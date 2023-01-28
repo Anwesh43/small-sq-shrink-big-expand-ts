@@ -14,7 +14,7 @@ export const useAnimatedScale = (scGap : number = 0.01, delay : number = 20) => 
                 setAnimated(true)
                 const interval = setInterval(() => {
                     setScale((prev : number) => {
-                        if (scale > 1) {
+                        if (prev > 1) {
                             setAnimated(false)
                             clearInterval(interval)
                             return 0
@@ -74,7 +74,7 @@ export const useStyle = (w : number, h : number, scale : number) => {
             return {
                 position,
                 left: `${-size / 2}px`,
-                top: `${h / 2}px`,
+                top: `${0}px`,
                 width: `${size}px`,
                 height: `${size * (1 - dsc(0))}px`,
                 background: 'indigo'
@@ -83,9 +83,9 @@ export const useStyle = (w : number, h : number, scale : number) => {
         bigSqStyle() : CSSProperties {
             return {
                 position, 
-                top: `${-size * dsc(1)}px`,
+                top: `${-h * 0.5 * dsc(1)}px`,
                 left: `${-w / 2}px`,
-                width: `${size * dsc(1)}px`,
+                width: `${w}px`,
                 height: `${h * 0.5 * dsc(1)}px`,
                 background: 'indigo'
             }
