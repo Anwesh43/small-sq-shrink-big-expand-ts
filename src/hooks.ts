@@ -53,10 +53,10 @@ const divideScale = (scale : number, i : number, n : number) : number => Math.mi
 
 const sinify : (a : number) => number = (scale : number) : number => Math.sin(scale * Math.PI)
 
-export const useStyle = (w : number, h : number, scale : number) => {
+export const useStyle = (w : number, h : number, scale : number, background : string = 'indigo', parts : number = 3) => {
     const size : number = Math.min(w, h) / 10 
     const sf : number = sinify(scale)
-    const dsc : (i : number) => number = (i : number) => divideScale(sf, i, 2)
+    const dsc : (i : number) => number = (i : number) => divideScale(sf, i, parts)
     const position = 'absolute'
     return {
         parentStyle() : CSSProperties {
@@ -77,17 +77,31 @@ export const useStyle = (w : number, h : number, scale : number) => {
                 top: `${0}px`,
                 width: `${size}px`,
                 height: `${size * (1 - dsc(0))}px`,
-                background: 'indigo'
+                background
             }
         },
         bigSqStyle() : CSSProperties {
             return {
                 position, 
-                top: `${-h * 0.5 * dsc(1)}px`,
+                top: `${-h * 0.5 * dsc(2)}px`,
                 left: `${-w / 2}px`,
                 width: `${w}px`,
-                height: `${h * 0.5 * dsc(1)}px`,
-                background: 'indigo'
+                height: `${h * 0.5 * dsc(2)}px`,
+                background
+            }
+        },
+        lineStyle() : CSSProperties {
+            const left : string = `${-w * 0.5 * dsc(1)}px`
+            const top : string = `0px`
+            const height : string = `${Math.min(w, h) / 90}px`
+            const width : string = `${w * dsc(1)}px`
+            return {
+                position, 
+                left, 
+                top, 
+                height, 
+                width,
+                background 
             }
         }
     }

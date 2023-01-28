@@ -5,7 +5,7 @@ import SqShrinkAndExpand from './SqShrinkAndExpand';
 function App() {
   return (
     <div className="App">
-      <SqShrinkAndExpand></SqShrinkAndExpand>
+      <SqShrinkAndExpand color = 'green' parts = {3}></SqShrinkAndExpand>
     </div>
   );
 }
