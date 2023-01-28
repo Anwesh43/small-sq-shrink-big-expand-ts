@@ -8,6 +8,5 @@ Small animated react component which shrink and expands
 ```
 
 ## Demo 
-```
-    <img src = "https://github.com/Anwesh43/small-sq-shrink-big-expand-ts/blob/master/sqshrinkexp.gif" w = "600px" h = "300px">
-```
+
+<img src = "https://github.com/Anwesh43/small-sq-shrink-big-expand-ts/blob/master/sqshrinkexp.gif" w = "600px" h = "300px">
