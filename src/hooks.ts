@@ -56,15 +56,38 @@ const sinify : (a : number) => number = (scale : number) : number => Math.sin(sc
 export const useStyle = (w : number, h : number, scale : number) => {
     const size : number = Math.min(w, h) / 10 
     const sf : number = sinify(scale)
+    const dsc : (i : number) => number = (i : number) => divideScale(sf, i, 2)
+    const position = 'absolute'
     return {
         parentStyle() : CSSProperties {
-            const position = 'absolute'
+            
             const left : string = `${w / 2}px`
             const top : string = `${h / 2}px`
             return {
                 left, 
                 top, 
                 position 
+            }
+        },
+
+        smallSqStyle() : CSSProperties {
+            return {
+                position,
+                left: `${-size / 2}px`,
+                top: `${h / 2}px`,
+                width: `${size}px`,
+                height: `${size * (1 - dsc(0))}px`,
+                background: 'indigo'
+            }
+        },
+        bigSqStyle() : CSSProperties {
+            return {
+                position, 
+                top: `${-size * dsc(1)}px`,
+                left: `${-w / 2}px`,
+                width: `${size * dsc(1)}px`,
+                height: `${h * 0.5 * dsc(1)}px`,
+                background: 'indigo'
             }
         }
     }
